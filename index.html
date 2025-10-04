@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack - Smart Budget Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles/home.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><span>Fin</span>Track</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                        <div class="nav-popup">
+                            <a href="#"><i class="bi bi-house"></i> Dashboard</a>
+                            <a href="#"><i class="bi bi-graph-up"></i> Financial Overview</a>
+                            <a href="#"><i class="bi bi-person"></i> My Profile</a>
+                            <a href="#"><i class="bi bi-gear"></i> Settings</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                        <div class="nav-popup">
+                            <a href="#"><i class="bi bi-wallet2"></i> Budget Planning</a>
+                            <a href="#"><i class="bi bi-piggy-bank"></i> Savings Tracking</a>
+                            <a href="#"><i class="bi bi-credit-card"></i> Expense Management</a>
+                            <a href="#"><i class="bi bi-bar-chart"></i> Investment Tools</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blogs</a>
+                        <div class="nav-popup">
+                            <a href="#"><i class="bi bi-currency-dollar"></i> Saving Tips</a>
+                            <a href="#"><i class="bi bi-graph-up-arrow"></i> Investment Guides</a>
+                            <a href="#"><i class="bi bi-coin"></i> Debt Management</a>
+                            <a href="#"><i class="bi bi-lightbulb"></i> Financial Literacy</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tools</a>
+                        <div class="nav-popup">
+                            <a href="#"><i class="bi bi-calculator"></i> Loan Calculator</a>
+                            <a href="#"><i class="bi bi-pie-chart"></i> Budget Calculator</a>
+                            <a href="#"><i class="bi bi-arrow-left-right"></i> Currency Converter</a>
+                            <a href="#"><i class="bi bi-calendar-event"></i> Retirement Planner</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/blog.html">Blogs</a>
+                    </li>
+                    <li class="nav-item ms-2"><a class="nav-link" href="#">Login</a></li>
+                    <li class="nav-item ms-2"><a class="nav-link btn-register" href="reg.html">Register</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Smart Budget Tracking & Financial Planning</h1>
+            <p class="lead">Take control of your income, expenses, savings, and future with FinTrack – your personal
+                financial advisor.</p>
+            <a href="#" class="btn btn-get-started">Get Started For Free</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose FinTrack?</h2>
+                <p>Powerful features to help you manage your finances effectively</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-wallet2"></i>
+                        </div>
+                        <h5>Budget Planner</h5>
+                        <p>Create and track custom budgets effortlessly with our intuitive tools.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-piggy-bank"></i>
+                        </div>
+                        <h5>Savings & Investments</h5>
+                        <p>Plan savings and get smart investment tips tailored to your goals.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-credit-card-2-front"></i>
+                        </div>
+                        <h5>Loan Management</h5>
+                        <p>Use calculators to manage EMIs and plan debt repayment strategies.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h5>Financial Reports</h5>
+                        <p>Visualize your financial health with detailed reports and analytics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Scroll Blog Section -->
+    <section class="blogs">
+        <div class="blog-container">
+            <div class="blog-header">
+                <h2>Latest From Our Blog</h2>
+                <a href="pages/blog.html" class="view-all">View All Articles <i class="bi bi-arrow-right ms-2"></i></a>
+            </div>
+
+            <div class="blog-scroll-container">
+                <div class="blog-scroll-track">
+                    <!-- Blog 1 -->
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Savings">
+                            <div class="blog-category">Savings</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3>5 Simple Ways to Save Money Every Month</h3>
+                            <p>Small daily savings can turn into big yearly amounts. Learn practical tips to cut costs
+                                without sacrificing quality of life.</p>
+                            <div class="blog-meta">
+                                <span><i class="bi bi-clock"></i> 7 min read</span>
+                                <a href="pages/blog.html" class="read-more">Read More <i
+                                        class="bi bi-arrow-right ms-2"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-hover-stats">
+                            <h3 class="stats-title">5 Simple Ways to Save Money Every Month</h3>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-value">7 min</div>
+                                    <div class="stat-label">Read</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">2.4K</div>
+                                    <div class="stat-label">Views</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">92%</div>
+                                    <div class="stat-label">Useful</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">84</div>
+                                    <div class="stat-label">Shares</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog 2 -->
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Budgeting">
+                            <div class="blog-category">Budgeting</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3>Why Budgeting is the First Step to Financial Freedom</h3>
+                            <p>A budget is not a restriction, it's your roadmap to smart financial decisions and
+                                achieving your money goals.</p>
+                            <div class="blog-meta">
+                                <span><i class="bi bi-clock"></i> 10 min read</span>
+                                <a href="pages/blog.html" class="read-more">Read More <i
+                                        class="bi bi-arrow-right ms-2"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-hover-stats">
+                            <h3 class="stats-title">Budgeting for Financial Freedom</h3>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-value">10 min</div>
+                                    <div class="stat-label">Read</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">3.1K</div>
+                                    <div class="stat-label">Views</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">95%</div>
+                                    <div class="stat-label">Useful</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">127</div>
+                                    <div class="stat-label">Shares</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog 3 -->
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Investments">
+                            <div class="blog-category">Investing</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3>Beginner's Guide to Investments</h3>
+                            <p>Stocks, mutual funds, or gold? Here's where to start if you are new to investing and want
+                                to build wealth.</p>
+                            <div class="blog-meta">
+                                <span><i class="bi bi-clock"></i> 15 min read</span>
+                                <a href="pages/blog.html" class="read-more">Read More <i
+                                        class="bi bi-arrow-right ms-2"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-hover-stats">
+                            <h3 class="stats-title">Beginner's Investment Guide</h3>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-value">15 min</div>
+                                    <div class="stat-label">Read</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">5.7K</div>
+                                    <div class="stat-label">Views</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">89%</div>
+                                    <div class="stat-label">Useful</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">203</div>
+                                    <div class="stat-label">Shares</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog 4 -->
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Debt Management">
+                            <div class="blog-category">Debt</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3>How to Get Out of Debt Faster</h3>
+                            <p>Effective strategies to reduce your debt burden and achieve financial freedom sooner than
+                                you think.</p>
+                            <div class="blog-meta">
+                                <span><i class="bi bi-clock"></i> 12 min read</span>
+                                <a href="pages/blog.html" class="read-more">Read More <i
+                                        class="bi bi-arrow-right ms-2"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-hover-stats">
+                            <h3 class="stats-title">Debt Reduction Strategies</h3>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-value">12 min</div>
+                                    <div class="stat-label">Read</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">4.2K</div>
+                                    <div class="stat-label">Views</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">91%</div>
+                                    <div class="stat-label">Useful</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">156</div>
+                                    <div class="stat-label">Shares</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog 5 -->
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Retirement">
+                            <div class="blog-category">Retirement</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3>Planning for Retirement in Your 30s</h3>
+                            <p>It's never too early to plan for retirement. Learn how to build a secure financial future
+                                starting now.</p>
+                            <div class="blog-meta">
+                                <span><i class="bi bi-clock"></i> 18 min read</span>
+                                <a href="pages/blog.html" class="read-more">Read More <i
+                                        class="bi bi-arrow-right ms-2"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-hover-stats">
+                            <h3 class="stats-title">Retirement Planning Guide</h3>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-value">18 min</div>
+                                    <div class="stat-label">Read</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">3.8K</div>
+                                    <div class="stat-label">Views</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">96%</div>
+                                    <div class="stat-label">Useful</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">142</div>
+                                    <div class="stat-label">Shares</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog 6 -->
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Tax Saving">
+                            <div class="blog-category">Taxes</div>
+                        </div>
+                        <div class="blog-content">
+                            <h3>Smart Tax Saving Strategies for 2025</h3>
+                            <p>Maximize your savings with these legal tax strategies that can help you keep more of your
+                                hard-earned money.</p>
+                            <div class="blog-meta">
+                                <span><i class="bi bi-clock"></i> 14 min read</span>
+                                <a href="pages/blog.html" class="read-more">Read More <i
+                                        class="bi bi-arrow-right ms-2"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-hover-stats">
+                            <h3 class="stats-title">Tax Saving Strategies</h3>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-value">14 min</div>
+                                    <div class="stat-label">Read</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">6.3K</div>
+                                    <div class="stat-label">Views</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">94%</div>
+                                    <div class="stat-label">Useful</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">218</div>
+                                    <div class="stat-label">Shares</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">Scroll horizontally to explore more articles</div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Users Say</h2>
+                <p>Join thousands of satisfied users who have transformed their financial lives</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "FinTrack helped me save over $5,000 in just six months. The budgeting tools are
+                            incredible!"
+                        </div>
+                        <div class="testimonial-author">- Sarah Johnson</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "I finally understand where my money is going. The visual reports make it so easy to track
+                            expenses."
+                        </div>
+                        <div class="testimonial-author">- Michael Chen</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "The investment tips helped me start building wealth. I wish I had found this app sooner!"
+                        </div>
+                        <div class="testimonial-author">- Jessica Williams</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h3>Stay Updated with Financial Tips</h3>
+            <p>Subscribe to our newsletter for the latest insights and updates</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email">
+                <button type="submit" class="btn-subscribe">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h4><span>Fin</span>Track</h4>
+                    <p>Empowering you to take control of your finances and build a secure financial future through smart
+                        budgeting and planning.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Budgeting</a></li>
+                        <li><a href="#">Expense Tracking</a></li>
+                        <li><a href="#">Investment Tips</a></li>
+                        <li><a href="#">Loan Management</a></li>
+                        <li><a href="#">Reports</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h5>Contact Us</h5>
+                    <ul>
+                        <li><i class="bi bi-geo-alt me-2"></i> RGUKT-Basar</li>
+                        <li><i class="bi bi-envelope me-2"></i> info@fintrack.com</li>
+                        <li><i class="bi bi-phone me-2"></i> +91 9182183086</li>
+                        <li><i class="bi bi-phone me-2"></i> +91 766093045</li>
+                        <li><i class="bi bi-phone me-2"></i> +91 6301090864</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 FinTrack | Designed by Team CSE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/home.js"></script>
+</body>
+
+</html>
