@@ -167,3 +167,158 @@ function submitForm() {
     step.classList.add('completed');
   }
 }
+// Login functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize particles (if not already done)
+  if (!window.particlesInitialized) {
+    createParticles();
+    window.particlesInitialized = true;
+  }
+  
+  // Password toggle for login form
+  const toggleLoginPassword = document.querySelector('#toggleLoginPassword');
+  const loginPassword = document.querySelector('#loginPassword');
+  
+  if (toggleLoginPassword && loginPassword) {
+    toggleLoginPassword.addEventListener('click', function() {
+      const type = loginPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+      loginPassword.setAttribute('type', type);
+      this.classList.toggle('bi-eye');
+      this.classList.toggle('bi-eye-slash');
+    });
+  }
+  
+  // Login form submission
+  const loginForm = document.getElementById('loginForm');
+  if (loginForm) {
+    loginForm.addEventListener('submit', handleLogin);
+  }
+  
+  // Social login buttons
+  const socialButtons = document.querySelectorAll('.btn-social');
+  socialButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const provider = this.classList.contains('google') ? 'Google' : 'Apple';
+      showMessage(`Continuing with ${provider}...`, 'info');
+      // In a real app, this would redirect to OAuth flow
+      setTimeout(() => {
+        showMessage(`${provider} authentication would be implemented here.`, 'info');
+      }, 1000);
+    });
+  });
+  
+  // Forgot password link
+  const forgotPassword = document.querySelector('.forgot-password');
+  if (forgotPassword) {
+    forgotPassword.addEventListener('click', function(e) {
+      e.preventDefault();
+      showMessage('Password reset functionality would be implemented here.', 'info');
+    });
+  }
+});
+
+// Handle login form submission
+function handleLogin(e) {
+  e.preventDefault();
+  
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+  const rememberMe = document.getElementById('rememberMe').checked;
+  
+  // Basic validation
+  if (!email || !password) {
+    showMessage('Please fill in all required fields.', 'error');
+    return;
+  }
+  
+  if (!validateEmail(email)) {
+    showMessage('Please enter a valid email address.', 'error');
+    return;
+  }
+  
+  // Show loading state
+  const submitBtn = e.target.querySelector('.btn-auth');
+  submitBtn.classList.add('loading');
+  
+  // Simulate API call
+  setTimeout(() => {
+    // Mock authentication - in real app, this would be an API call
+    if (email === 'demo@fintrack.com' && password === 'password') {
+      // Successful login
+      showMessage('Login successful! Redirecting to dashboard...', 'success');
+      
+      // Store login state
+      if (rememberMe) {
+        localStorage.setItem('rememberMe', 'true');
+        localStorage.setItem('userEmail', email);
+      }
+      
+      sessionStorage.setItem('isLoggedIn', 'true');
+      sessionStorage.setItem('userEmail', email);
+      
+      // Redirect to dashboard after delay
+      setTimeout(() => {
+        window.location.href = 'dashboard.html'; // You can create this later
+      }, 2000);
+      
+    } else {
+      // Failed login
+      showMessage('Invalid email or password. Please try again.', 'error');
+      submitBtn.classList.remove('loading');
+    }
+  }, 2000);
+}
+
+// Show message to user
+function showMessage(message, type) {
+  // Remove existing messages
+  const existingMessages = document.querySelectorAll('.success-message, .error-message');
+  existingMessages.forEach(msg => msg.remove());
+  
+  // Create new message element
+  const messageEl = document.createElement('div');
+  messageEl.className = type === 'success' ? 'success-message' : 'error-message';
+  messageEl.textContent = message;
+  messageEl.style.display = 'block';
+  
+  // Insert after the form or at the top of auth form container
+  const authForm = document.querySelector('.auth-form');
+  if (authForm) {
+    authForm.parentNode.insertBefore(messageEl, authForm);
+  }
+  
+  // Auto-remove after 5 seconds
+  setTimeout(() => {
+    if (messageEl.parentNode) {
+      messageEl.style.opacity = '0';
+      setTimeout(() => {
+        if (messageEl.parentNode) {
+          messageEl.parentNode.removeChild(messageEl);
+        }
+      }, 300);
+    }
+  }, 5000);
+}
+
+// Email validation helper
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+// Check if user was remembered
+function checkRememberedUser() {
+  if (localStorage.getItem('rememberMe') === 'true') {
+    const rememberedEmail = localStorage.getItem('userEmail');
+    if (rememberedEmail) {
+      document.getElementById('loginEmail').value = rememberedEmail;
+      document.getElementById('rememberMe').checked = true;
+    }
+  }
+}
+
+// Initialize remembered user check when page loads
+if (window.location.pathname.includes('login.html')) {
+  document.addEventListener('DOMContentLoaded', checkRememberedUser);
+}
