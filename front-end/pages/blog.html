@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - FinTrack</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/home.css">
+  <link rel="stylesheet" href="../styles/blog.css">
+</head>
+<body>
+  <!-- Navbar (same as index.html) -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html"><span>Fin</span>Track</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Tools</a></li>
+          <li class="nav-item"><a class="nav-link active" href="blog.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="../login.html">Login</a></li>
+          <li class="nav-item ms-2"><a class="nav-link btn-register" href="../reg.html">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Header -->
+  <section class="blog-header-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1>Financial Insights & Tips</h1>
+          <p class="lead">Expert advice on budgeting, saving, investing, and achieving financial freedom</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Categories -->
+  <section class="blog-categories">
+    <div class="container">
+      <div class="categories-filter">
+        <button class="category-btn active" data-category="all">All Articles</button>
+        <button class="category-btn" data-category="savings">Savings</button>
+        <button class="category-btn" data-category="budgeting">Budgeting</button>
+        <button class="category-btn" data-category="investing">Investing</button>
+        <button class="category-btn" data-category="debt">Debt Management</button>
+        <button class="category-btn" data-category="retirement">Retirement</button>
+        <button class="category-btn" data-category="taxes">Taxes</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="blog-grid-section">
+    <div class="container">
+      <div class="row" id="blogGrid">
+        <!-- Blog posts will be loaded dynamically -->
+      </div>
+      
+      <!-- Load More Button -->
+      <div class="text-center mt-5">
+        <button class="btn btn-load-more" id="loadMore">Load More Articles</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter">
+    <div class="container">
+      <h3>Stay Updated with Financial Tips</h3>
+      <p>Subscribe to our newsletter for the latest insights and updates</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email">
+        <button type="submit" class="btn-subscribe">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer (same as index.html) -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h4><span>Fin</span>Track</h4>
+          <p>Empowering you to take control of your finances and build a secure financial future through smart budgeting and planning.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h5>Features</h5>
+          <ul>
+            <li><a href="#">Budgeting</a></li>
+            <li><a href="#">Expense Tracking</a></li>
+            <li><a href="#">Investment Tips</a></li>
+            <li><a href="#">Loan Management</a></li>
+            <li><a href="#">Reports</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h5>Contact Us</h5>
+          <ul>
+            <li><i class="bi bi-geo-alt me-2"></i> RGUKT-Basar</li>
+            <li><i class="bi bi-envelope me-2"></i> info@fintrack.com</li>
+            <li><i class="bi bi-phone me-2"></i> +91 9182183086</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>© 2025 FinTrack | Designed by Team CSE. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/blog.js"></script>
+</body>
+</html>
