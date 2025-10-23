@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Goals - FinTrack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/goals.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="bi bi-graph-up"></i><span>Fin</span>Track
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">
+                            <i class="bi bi-house me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html" id="dashboardLink">
+                            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="transactions.html">
+                            <i class="bi bi-arrow-left-right me-1"></i>Transactions
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="budgets.html">
+                            <i class="bi bi-wallet2 me-1"></i>Budgets
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="goals.html">
+                            <i class="bi bi-flag me-1"></i>Goals
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-tools me-1"></i>Tools
+                        </a>
+                        <div class="nav-popup">
+                            <a href="loan-calculator.html"><i class="bi bi-calculator"></i> Loan Calculator</a>
+                            <a href="budget-calculator.html"><i class="bi bi-pie-chart"></i> Budget Calculator</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html" id="profileLink">
+                            <i class="bi bi-person me-1"></i>Profile
+                        </a>
+                    </li>
+
+                    <!-- Logout Button -->
+                    <li class="nav-item ms-2">
+                        <a class="nav-link logout-btn btn-logout-custom" href="#" id="logoutLink">
+                            <i class="bi bi-box-arrow-right me-1"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container goals-page">
+        <div class="page-header">
+            <h1><i class="bi bi-flag me-2"></i>Financial Goals</h1>
+            <p class="lead">Turn your dreams into achievable financial milestones with smart tracking</p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="goals-stats">
+            <div class="stat-card">
+                <div class="stat-icon active">
+                    <i class="bi bi-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="active-goals">0</h3>
+                    <p>Active Goals</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon completed">
+                    <i class="bi bi-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="completed-goals">0</h3>
+                    <p>Completed</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon total-saved">
+                    <i class="bi bi-currency-rupee"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="total-saved">₹0</h3>
+                    <p>Total Saved</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon upcoming">
+                    <i class="bi bi-calendar-event"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="upcoming-deadlines">0</h3>
+                    <p>Upcoming Deadlines</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Goals Management -->
+        <div class="goals-management">
+            <div class="section-header">
+                <h2><i class="bi bi-bullseye me-2"></i>Your Financial Goals</h2>
+                <div class="goal-actions">
+                    <div class="filter-options">
+                        <select id="goal-filter" onchange="filterGoals()">
+                            <option value="all">All Goals</option>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                            <option value="behind">Behind Schedule</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                        <select id="goal-sort" onchange="sortGoals()">
+                            <option value="deadline">Sort by Deadline</option>
+                            <option value="priority">Sort by Priority</option>
+                            <option value="progress">Sort by Progress</option>
+                            <option value="amount">Sort by Amount</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="showCreateGoalModal()">
+                        <i class="bi bi-plus-circle me-2"></i>Create New Goal
+                    </button>
+                </div>
+            </div>
+
+            <!-- Goals View Toggle -->
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid" onclick="changeGoalsView('grid')">
+                    <i class="bi bi-grid-3x3-gap"></i> Grid
+                </button>
+                <button class="view-btn" data-view="list" onclick="changeGoalsView('list')">
+                    <i class="bi bi-list-task"></i> List
+                </button>
+                <button class="view-btn" data-view="timeline" onclick="changeGoalsView('timeline')">
+                    <i class="bi bi-calendar-range"></i> Timeline
+                </button>
+            </div>
+
+            <!-- Goals Grid View -->
+            <div class="goals-container grid-view active" id="goals-grid">
+                <div class="goals-grid" id="goals-grid-container">
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Loading your goals...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goals List View -->
+            <div class="goals-container list-view" id="goals-list">
+                <div class="goals-list" id="goals-list-container">
+                    <!-- List view will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Goals Timeline View -->
+            <div class="goals-container timeline-view" id="goals-timeline">
+                <div class="timeline-container">
+                    <div class="timeline" id="goals-timeline-container">
+                        <!-- Timeline will be generated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Smart Goal Suggestions -->
+        <div class="suggestions-section">
+            <div class="section-header">
+                <h2><i class="bi bi-lightbulb me-2"></i>Smart Goal Suggestions</h2>
+                <span class="badge ai-badge">AI Powered</span>
+            </div>
+
+            <div class="suggestions-grid">
+                <div class="suggestion-card emergency">
+                    <div class="suggestion-header">
+                        <i class="bi bi-shield-check"></i>
+                        <h4>Emergency Fund</h4>
+                    </div>
+                    <div class="suggestion-details">
+                        <p>Build a safety net for unexpected expenses</p>
+                        <div class="suggestion-stats">
+                            <span class="amount">₹50,000 - ₹2,00,000</span>
+                            <span class="duration">3-12 months</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary" onclick="quickCreateGoal('Emergency Fund', 100000, 'high')">
+                        Quick Create
+                    </button>
+                </div>
+
+                <div class="suggestion-card vacation">
+                    <div class="suggestion-header">
+                        <i class="bi bi-airplane"></i>
+                        <h4>Dream Vacation</h4>
+                    </div>
+                    <div class="suggestion-details">
+                        <p>Plan and save for your perfect getaway</p>
+                        <div class="suggestion-stats">
+                            <span class="amount">₹30,000 - ₹3,00,000</span>
+                            <span class="duration">6-18 months</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary"
+                        onclick="quickCreateGoal('Dream Vacation', 75000, 'medium')">
+                        Quick Create
+                    </button>
+                </div>
+
+                <div class="suggestion-card vehicle">
+                    <div class="suggestion-header">
+                        <i class="bi bi-car-front"></i>
+                        <h4>Vehicle Purchase</h4>
+                    </div>
+                    <div class="suggestion-details">
+                        <p>Save for your next car or bike</p>
+                        <div class="suggestion-stats">
+                            <span class="amount">₹1,00,000 - ₹15,00,000</span>
+                            <span class="duration">12-36 months</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary"
+                        onclick="quickCreateGoal('Vehicle Purchase', 500000, 'high')">
+                        Quick Create
+                    </button>
+                </div>
+
+                <div class="suggestion-card home">
+                    <div class="suggestion-header">
+                        <i class="bi bi-house"></i>
+                        <h4>Home Down Payment</h4>
+                    </div>
+                    <div class="suggestion-details">
+                        <p>Start building your home ownership fund</p>
+                        <div class="suggestion-stats">
+                            <span class="amount">₹5,00,000 - ₹20,00,000</span>
+                            <span class="duration">24-60 months</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary"
+                        onclick="quickCreateGoal('Home Down Payment', 1000000, 'high')">
+                        Quick Create
+                    </button>
+                </div>
+
+                <div class="suggestion-card education">
+                    <div class="suggestion-header">
+                        <i class="bi bi-mortarboard"></i>
+                        <h4>Education Fund</h4>
+                    </div>
+                    <div class="suggestion-details">
+                        <p>Invest in your or your children's education</p>
+                        <div class="suggestion-stats">
+                            <span class="amount">₹50,000 - ₹10,00,000</span>
+                            <span class="duration">12-48 months</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary"
+                        onclick="quickCreateGoal('Education Fund', 200000, 'medium')">
+                        Quick Create
+                    </button>
+                </div>
+
+                <div class="suggestion-card retirement">
+                    <div class="suggestion-header">
+                        <i class="bi bi-umbrella"></i>
+                        <h4>Retirement Planning</h4>
+                    </div>
+                    <div class="suggestion-details">
+                        <p>Build your retirement corpus systematically</p>
+                        <div class="suggestion-stats">
+                            <span class="amount">₹10,00,000+</span>
+                            <span class="duration">60-240 months</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary" onclick="showRetirementGoalModal()">
+                        Plan Retirement
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Analytics -->
+        <div class="analytics-section">
+            <div class="section-header">
+                <h2><i class="bi bi-graph-up me-2"></i>Goal Progress Analytics</h2>
+                <div class="time-filter">
+                    <select id="analytics-period" onchange="goalsManager.updateAnalytics()">
+                        <option value="month">This Month</option>
+                        <option value="quarter">This Quarter</option>
+                        <option value="year">This Year</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h4>Goal Completion Timeline</h4>
+                    <canvas id="timeline-chart" height="250"></canvas>
+                </div>
+                <div class="analytics-card">
+                    <h4>Savings Progress</h4>
+                    <canvas id="savings-chart" height="250"></canvas>
+                </div>
+                <div class="analytics-card">
+                    <h4>Goal Distribution</h4>
+                    <canvas id="distribution-chart" height="250"></canvas>
+                </div>
+                <div class="analytics-card">
+                    <h4>Monthly Savings Trend</h4>
+                    <canvas id="trend-chart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Milestones & Achievements -->
+        <div class="milestones-section">
+            <div class="section-header">
+                <h2><i class="bi bi-trophy me-2"></i>Milestones & Achievements</h2>
+            </div>
+
+            <div class="milestones-container">
+                <div class="milestones-grid">
+                    <div class="milestone-card">
+                        <div class="milestone-icon first-goal">
+                            <i class="bi bi-flag"></i>
+                        </div>
+                        <h4>First Goal Set</h4>
+                        <p>Create your first financial goal</p>
+                        <div class="milestone-progress">
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                            <span>Completed</span>
+                        </div>
+                    </div>
+
+                    <div class="milestone-card">
+                        <div class="milestone-icon savings-milestone">
+                            <i class="bi bi-currency-rupee"></i>
+                        </div>
+                        <h4>₹50,000 Saved</h4>
+                        <p>Reach ₹50,000 in total savings</p>
+                        <div class="milestone-progress">
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 65%"></div>
+                            </div>
+                            <span>65%</span>
+                        </div>
+                    </div>
+
+                    <div class="milestone-card">
+                        <div class="milestone-icon goal-completed">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <h4>First Goal Completed</h4>
+                        <p>Successfully complete your first goal</p>
+                        <div class="milestone-progress">
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 0%"></div>
+                            </div>
+                            <span>0%</span>
+                        </div>
+                    </div>
+
+                    <div class="milestone-card">
+                        <div class="milestone-icon consistent-saver">
+                            <i class="bi bi-lightning"></i>
+                        </div>
+                        <h4>Consistent Saver</h4>
+                        <p>Save consistently for 3 months</p>
+                        <div class="milestone-progress">
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 33%"></div>
+                            </div>
+                            <span>1/3 months</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Goal Modal -->
+    <div class="modal fade" id="createGoalModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New Financial Goal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createGoalForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="goalTitle">Goal Title</label>
+                                    <input type="text" class="form-control" id="goalTitle"
+                                        placeholder="e.g., Emergency Fund, Dream Vacation" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="goalCategory">Category</label>
+                                    <select class="form-select" id="goalCategory" required>
+                                        <option value="">Select Category</option>
+                                        <option value="emergency">Emergency Fund</option>
+                                        <option value="vacation">Vacation</option>
+                                        <option value="vehicle">Vehicle</option>
+                                        <option value="home">Home</option>
+                                        <option value="education">Education</option>
+                                        <option value="retirement">Retirement</option>
+                                        <option value="wedding">Wedding</option>
+                                        <option value="gadgets">Gadgets</option>
+                                        <option value="health">Health</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="goalAmount">Target Amount (₹)</label>
+                                    <input type="number" class="form-control" id="goalAmount" min="1" required>
+                                    <div class="amount-suggestions">
+                                        <button type="button" class="btn-suggestion"
+                                            onclick="setGoalAmount(50000)">₹50K</button>
+                                        <button type="button" class="btn-suggestion"
+                                            onclick="setGoalAmount(100000)">₹1L</button>
+                                        <button type="button" class="btn-suggestion"
+                                            onclick="setGoalAmount(500000)">₹5L</button>
+                                        <button type="button" class="btn-suggestion"
+                                            onclick="setGoalAmount(1000000)">₹10L</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="goalDeadline">Target Date</label>
+                                    <input type="date" class="form-control" id="goalDeadline" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="goalPriority">Priority</label>
+                                    <select class="form-select" id="goalPriority" required>
+                                        <option value="low">Low</option>
+                                        <option value="medium" selected>Medium</option>
+                                        <option value="high">High</option>
+                                        <option value="urgent">Urgent</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="goalDescription">Description</label>
+                            <textarea class="form-control" id="goalDescription" rows="3"
+                                placeholder="Describe your goal and why it's important to you..."></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="monthlyContribution">Monthly Contribution (₹)</label>
+                                    <input type="number" class="form-control" id="monthlyContribution" min="1">
+                                    <small class="form-text text-muted">Leave empty for auto-calculation</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="initialAmount">Initial Amount (₹)</label>
+                                    <input type="number" class="form-control" id="initialAmount" min="0" value="0">
+                                    <small class="form-text text-muted">Amount already saved</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="goalAlerts" checked>
+                            <label class="form-check-label" for="goalAlerts">
+                                Send progress updates and reminders
+                            </label>
+                        </div>
+
+                        <!-- Auto-calculation Preview -->
+                        <div class="calculation-preview" id="calculationPreview" style="display: none;">
+                            <h6>Goal Calculation Preview</h6>
+                            <div class="preview-details">
+                                <div class="preview-item">
+                                    <span>Monthly Savings Needed:</span>
+                                    <strong id="previewMonthly">₹0</strong>
+                                </div>
+                                <div class="preview-item">
+                                    <span>Months to Goal:</span>
+                                    <strong id="previewMonths">0</strong>
+                                </div>
+                                <div class="preview-item">
+                                    <span>Progress Pace:</span>
+                                    <strong id="previewPace">On Track</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="createGoal()">Create Goal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Retirement Goal Modal -->
+    <div class="modal fade" id="retirementGoalModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Retirement Planning Calculator</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="retirement-calculator">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="currentAge">Current Age</label>
+                                            <input type="number" class="form-control" id="currentAge" value="30"
+                                                min="18" max="70">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="retirementAge">Retirement Age</label>
+                                            <input type="number" class="form-control" id="retirementAge" value="60"
+                                                min="55" max="80">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="currentSavings">Current Retirement Savings (₹)</label>
+                                    <input type="number" class="form-control" id="currentSavings" value="500000">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="retirementCorpus">Desired Retirement Corpus (₹)</label>
+                                    <input type="number" class="form-control" id="retirementCorpus" value="5000000">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="expectedReturn">Expected Annual Return (%)</label>
+                                    <input type="range" class="form-range" id="expectedReturn" min="1" max="15"
+                                        step="0.1" value="8">
+                                    <div class="range-value">
+                                        <span id="returnValue">8%</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inflationRate">Expected Inflation Rate (%)</label>
+                                    <input type="range" class="form-range" id="inflationRate" min="1" max="10"
+                                        step="0.1" value="5">
+                                    <div class="range-value">
+                                        <span id="inflationValue">5%</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="retirementSpending">Expected Annual Retirement Spending (₹)</label>
+                                    <input type="number" class="form-control" id="retirementSpending" value="1200000">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="socialSecurity">Expected Pension/Annuity Income (₹)</label>
+                                    <input type="number" class="form-control" id="socialSecurity" value="300000">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="calculation-result">
+                                <h6>Retirement Plan Analysis</h6>
+                                <div class="result-details" id="additionalResults">
+                                    <div class="result-item">
+                                        <span>Future Value of Current Savings:</span>
+                                        <strong>₹0</strong>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>Monthly Investment Needed:</span>
+                                        <strong>₹0</strong>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>Total Investment:</span>
+                                        <strong>₹0</strong>
+                                    </div>
+                                </div>
+
+                                <div class="chart-container">
+                                    <canvas id="retirementChart" height="300"></canvas>
+                                </div>
+
+                                <div class="summary-box">
+                                    <h6>Investment Summary</h6>
+                                    <div class="result-item">
+                                        <span>Monthly Investment Needed:</span>
+                                        <strong id="monthlyInvestment">₹0</strong>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>Years to Retirement:</span>
+                                        <strong id="yearsToRetirement">0</strong>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>Total Investment:</span>
+                                        <strong id="totalInvestment">₹0</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="createRetirementGoal()">Create Retirement
+                        Goal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h4><span>Fin</span>Track</h4>
+                    <p>Empowering you to take control of your finances and build a secure financial future.</p>
+                </div>
+                <div class="footer-links">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="budgets.html">Budgets</a></li>
+                        <li><a href="goals.html">Goals</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 FinTrack | Achieve your financial dreams with smart goal tracking</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/goals.js"></script>
+    <script>
+        // Helper function for amount suggestions
+        function setGoalAmount(amount) {
+            document.getElementById('goalAmount').value = amount;
+            if (window.goalsManager) {
+                window.goalsManager.calculateGoalPlan();
+            }
+        }
+    </script>
+</body>
+
+</html>

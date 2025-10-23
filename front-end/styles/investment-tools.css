@@ -1,0 +1,247 @@
+/* Investment Tools Page Styles */
+
+.hero-investment {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 0 80px;
+    text-align: center;
+}
+
+.hero-investment h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero-investment .lead {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    opacity: 0.9;
+}
+
+.tools-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.tool-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    height: 100%;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #667eea;
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.tool-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.tool-card h5 {
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.tool-card p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.tool-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tool-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+}
+
+.tool-list li:last-child {
+    border-bottom: none;
+}
+
+.tool-list strong {
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.tool-list a {
+    color: #667eea;
+    text-decoration: none;
+    margin-right: 8px;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.tool-list a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+.key-insight {
+    padding: 60px 0;
+    background: white;
+}
+
+.insight-card {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    border-left: 5px solid #f39c12;
+    border-radius: 15px;
+    padding: 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.insight-icon {
+    font-size: 2.5rem;
+    color: #e67e22;
+    flex-shrink: 0;
+}
+
+.insight-content h3 {
+    color: #e67e22;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.insight-content p {
+    color: #333;
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.tools-comparison {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.comparison-table {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.table th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    border: none;
+    font-weight: 600;
+}
+
+.table td {
+    padding: 15px;
+    border-color: #f0f0f0;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.profile-badge {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.cta-investment {
+    padding: 80px 0;
+    background: white;
+}
+
+.cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.cta-content p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-investment {
+        padding: 80px 0 60px;
+    }
+    
+    .hero-investment h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-investment .lead {
+        font-size: 1.1rem;
+    }
+    
+    .tools-section,
+    .tools-comparison,
+    .cta-investment {
+        padding: 60px 0;
+    }
+    
+    .insight-card {
+        padding: 30px 25px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .comparison-table {
+        padding: 25px 20px;
+    }
+    
+    .table {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .tool-card {
+        padding: 25px 20px;
+    }
+    
+    .table th,
+    .table td {
+        padding: 10px 8px;
+    }
+}

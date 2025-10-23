@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculator - FinTrack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/budget-calculator.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="bi bi-graph-up"></i><span>Fin</span>Track
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">
+                            <i class="bi bi-house me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html" id="dashboardLink">
+                            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="transactions.html">
+                            <i class="bi bi-arrow-left-right me-1"></i>Transactions
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="budgets.html">
+                            <i class="bi bi-wallet2 me-1"></i>Budgets
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="goals.html">
+                            <i class="bi bi-flag me-1"></i>Goals
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-tools me-1"></i>Tools
+                        </a>
+                        <div class="nav-popup">
+                            <a href="loan-calculator.html"><i class="bi bi-calculator"></i> Loan Calculator</a>
+                            <a href="budget-calculator.html"><i class="bi bi-pie-chart"></i> Budget Calculator</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html" id="profileLink">
+                            <i class="bi bi-person me-1"></i>Profile
+                        </a>
+                    </li>
+
+                    <!-- Logout Button -->
+                    <li class="nav-item ms-2">
+                        <a class="nav-link logout-btn btn-logout-custom" href="#" id="logoutLink">
+                            <i class="bi bi-box-arrow-right me-1"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container calculator-page">
+        <div class="page-header">
+            <h1><i class="bi bi-calculator me-2"></i>Smart Budget Calculator</h1>
+            <p class="lead">Calculate your ideal budget allocation based on your income and financial goals</p>
+        </div>
+
+        <div class="calculator-container">
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="section-card">
+                    <h3><i class="bi bi-cash-stack me-2"></i>Income & Expenses</h3>
+                    
+                    <div class="form-group">
+                        <label for="monthly-income">Monthly Income (₹)</label>
+                        <div class="input-with-icon">
+                            <span class="input-icon">₹</span>
+                            <input type="number" id="monthly-income" min="0" step="1000" value="50000">
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" id="monthly-income-slider" min="10000" max="500000" step="5000" value="50000" class="slider">
+                        </div>
+                        <div class="value-display" id="monthly-income-value">₹50,000</div>
+                    </div>
+
+                    <div class="expense-categories">
+                        <h4>Monthly Expenses</h4>
+                        
+                        <div class="expense-item">
+                            <label for="housing-expense">Housing & Rent</label>
+                            <div class="input-with-icon">
+                                <span class="input-icon">₹</span>
+                                <input type="number" id="housing-expense" min="0" step="500" value="15000">
+                            </div>
+                            <div class="recommended">Recommended: 25-35%</div>
+                        </div>
+
+                        <div class="expense-item">
+                            <label for="food-expense">Food & Dining</label>
+                            <div class="input-with-icon">
+                                <span class="input-icon">₹</span>
+                                <input type="number" id="food-expense" min="0" step="500" value="8000">
+                            </div>
+                            <div class="recommended">Recommended: 10-15%</div>
+                        </div>
+
+                        <div class="expense-item">
+                            <label for="transportation-expense">Transportation</label>
+                            <div class="input-with-icon">
+                                <span class="input-icon">₹</span>
+                                <input type="number" id="transportation-expense" min="0" step="500" value="5000">
+                            </div>
+                            <div class="recommended">Recommended: 10-15%</div>
+                        </div>
+
+                        <div class="expense-item">
+                            <label for="entertainment-expense">Entertainment</label>
+                            <div class="input-with-icon">
+                                <span class="input-icon">₹</span>
+                                <input type="number" id="entertainment-expense" min="0" step="500" value="4000">
+                            </div>
+                            <div class="recommended">Recommended: 5-10%</div>
+                        </div>
+
+                        <div class="expense-item">
+                            <label for="savings-expense">Savings & Investments</label>
+                            <div class="input-with-icon">
+                                <span class="input-icon">₹</span>
+                                <input type="number" id="savings-expense" min="0" step="500" value="10000">
+                            </div>
+                            <div class="recommended">Recommended: 15-20%</div>
+                        </div>
+
+                        <div class="expense-item">
+                            <label for="other-expense">Other Expenses</label>
+                            <div class="input-with-icon">
+                                <span class="input-icon">₹</span>
+                                <input type="number" id="other-expense" min="0" step="500" value="3000">
+                            </div>
+                            <div class="recommended">Miscellaneous</div>
+                        </div>
+                    </div>
+
+                    <button id="calculate-budget" class="btn-calculate">
+                        <i class="bi bi-calculator me-2"></i>Calculate Budget
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="result-section">
+                <div class="section-card result-card">
+                    <h3><i class="bi bi-pie-chart me-2"></i>Budget Analysis</h3>
+                    
+                    <div class="budget-summary">
+                        <div class="summary-item">
+                            <div class="summary-label">Total Income</div>
+                            <div class="summary-value" id="total-income">₹50,000</div>
+                        </div>
+                        
+                        <div class="summary-item">
+                            <div class="summary-label">Total Expenses</div>
+                            <div class="summary-value" id="total-expenses">₹45,000</div>
+                        </div>
+                        
+                        <div class="summary-item highlight">
+                            <div class="summary-label">Remaining Balance</div>
+                            <div class="summary-value" id="remaining-balance">₹5,000</div>
+                        </div>
+                    </div>
+
+                    <!-- Budget Allocation Chart -->
+                    <div class="chart-container">
+                        <canvas id="budget-chart"></canvas>
+                    </div>
+
+                    <!-- Budget Recommendations -->
+                    <div class="recommendations">
+                        <h4><i class="bi bi-lightbulb me-2"></i>Budget Recommendations</h4>
+                        <div id="recommendations-list">
+                            <div class="recommendation positive">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Your savings rate is excellent! Keep it up.</span>
+                            </div>
+                            <div class="recommendation warning">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                <span>Consider reducing entertainment expenses by 10%.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <h4><i class="bi bi-lightning me-2"></i>Quick Actions</h4>
+                        <div class="action-buttons">
+                            <button class="btn-action" id="save-budget">
+                                <i class="bi bi-save me-2"></i>Save to Budgets
+                            </button>
+                            <button class="btn-action" id="export-report">
+                                <i class="bi bi-download me-2"></i>Export Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Breakdown -->
+        <div class="breakdown-section">
+            <div class="section-card">
+                <h3><i class="bi bi-bar-chart me-2"></i>Detailed Budget Breakdown</h3>
+                
+                <div class="breakdown-table">
+                    <table id="budget-breakdown">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Your Spending</th>
+                                <th>Recommended %</th>
+                                <th>Recommended Amount</th>
+                                <th>Status</th>
+                                <th>Difference</th>
+                            </tr>
+                        </thead>
+                        <tbody id="breakdown-body">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h4><span>Fin</span>Track</h4>
+                    <p>Empowering you to take control of your finances and build a secure financial future.</p>
+                </div>
+                <div class="footer-links">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="budgets.html">Budgets</a></li>
+                        <li><a href="budget-calculator.html">Calculator</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 FinTrack | Smart financial planning made easy</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/budget-calculator.js"></script>
+</body>
+</html>

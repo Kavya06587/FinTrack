@@ -1,42 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - FinTrack Pro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="..\styles\dashboard.css">
-    <link rel="stylesheet" href="..\styles\main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/loans.css">
+    <link rel="stylesheet" href="../styles/main.css">
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="..\index.html"><span>Fin</span>Track</a>
+            <a class="navbar-brand" href="../index.html">
+                <i class="bi bi-graph-up"></i><span>Fin</span>Track
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="dashboard.html"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a>
+                        <a class="nav-link" href="../index.html">
+                            <i class="bi bi-house me-1"></i>Home
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.html"><i class="bi bi-person me-1"></i>Profile</a>
+                        <a class="nav-link active" href="dashboard.html" id="dashboardLink">
+                            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-wallet2 me-1"></i>Budget</a>
+                        <a class="nav-link" href="transactions.html">
+                            <i class="bi bi-arrow-left-right me-1"></i>Transactions
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-graph-up me-1"></i>Reports</a>
+                        <a class="nav-link" href="budgets.html">
+                            <i class="bi bi-wallet2 me-1"></i>Budgets
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="..\index.html"><i class="bi bi-house me-1"></i>Home</a>
+                        <a class="nav-link" href="goals.html">
+                            <i class="bi bi-flag me-1"></i>Goals
+                        </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-tools me-1"></i>Tools
+                        </a>
+                        <div class="nav-popup">
+                            <a href="loan-calculator.html"><i class="bi bi-calculator"></i> Loan Calculator</a>
+                            <a href="budget-calculator.html"><i class="bi bi-pie-chart"></i> Budget Calculator</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html" id="profileLink">
+                            <i class="bi bi-person me-1"></i>Profile
+                        </a>
+                    </li>
+
+                    <!-- Logout Button -->
                     <li class="nav-item ms-2">
-                        <a class="nav-link btn-logout" href="#" onclick="logout()">
+                        <a class="nav-link logout-btn btn-logout-custom" href="#" id="logoutLink">
                             <i class="bi bi-box-arrow-right me-1"></i>Logout
                         </a>
                     </li>
@@ -50,8 +83,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h1 id="welcomeMessage">Welcome back!</h1>
-                    <p class="lead mb-0" id="dashboardDate">Loading your financial overview...</p>
+                    <h1 id="welcomeMessage" data-user="welcome">Welcome back!</h1>
+                    <p class="lead mb-0" id="dashboardDate">Your quick financial snapshot</p>
                 </div>
                 <div class="col-md-4 text-md-end">
                     <div class="user-info">
@@ -59,8 +92,8 @@
                             <i class="bi bi-person-circle"></i>
                         </div>
                         <div class="user-details">
-                            <strong id="userName">User</strong>
-                            <small id="userEmail" class="d-block">email@example.com</small>
+                            <strong id="userName" data-user="name">User</strong>
+                            <small id="userEmail" data-user="email" class="d-block">email@example.com</small>
                         </div>
                     </div>
                 </div>
@@ -68,172 +101,280 @@
         </div>
     </div>
 
+    <!-- Quick Actions Bar -->
+    <div class="quick-actions-bar">
+        <div class="container">
+            <div class="row g-2">
+                <div class="col-6 col-md-3 col-lg">
+                    <button class="quick-action-btn" onclick="showAddTransactionModal()">
+                        <i class="bi bi-plus-circle"></i>
+                        <span>Add Transaction</span>
+                    </button>
+                </div>
+                <div class="col-6 col-md-3 col-lg">
+                    <button class="quick-action-btn" onclick="window.location.href='budgets.html'">
+                        <i class="bi bi-wallet2"></i>
+                        <span>Manage Budgets</span>
+                    </button>
+                </div>
+                <div class="col-6 col-md-3 col-lg">
+                    <button class="quick-action-btn" onclick="window.location.href='goals.html'">
+                        <i class="bi bi-flag"></i>
+                        <span>Set Goals</span>
+                    </button>
+                </div>
+                <div class="col-6 col-md-3 col-lg">
+                    <button class="quick-action-btn" onclick="window.location.href='financial-overview.html'">
+                        <i class="bi bi-graph-up"></i>
+                        <span>Detailed Analysis</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Dashboard Content -->
     <div class="container dashboard-container">
-        <!-- Financial Overview Cards -->
+        <!-- Financial Snapshot Cards -->
         <div class="row g-4 mb-4">
-            <div class="col-md-3">
+            <div class="col-md-6 col-lg-3">
+                <div class="stat-card total-balance-card">
+                    <div class="stat-icon">
+                        <i class="bi bi-cash-stack"></i>
+                    </div>
+                    <h3 id="totalBalance">₹0</h3>
+                    <p>Available Balance</p>
+                    <div class="trend" id="balanceTrend">
+                        <i class="bi bi-dash"></i> Today
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
                 <div class="stat-card income-card">
                     <div class="stat-icon">
-                        <i class="bi bi-currency-dollar"></i>
+                        <i class="bi bi-arrow-up-circle"></i>
                     </div>
-                    <h3 id="monthlyIncome">$0</h3>
-                    <p>Monthly Income</p>
+                    <h3 id="monthlyIncome">₹0</h3>
+                    <p>This Month's Income</p>
                     <div class="trend positive">
-                        <i class="bi bi-arrow-up"></i> Stable
+                        <i class="bi bi-arrow-up"></i> Current
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6 col-lg-3">
                 <div class="stat-card expenses-card">
                     <div class="stat-icon">
-                        <i class="bi bi-cart"></i>
+                        <i class="bi bi-arrow-down-circle"></i>
                     </div>
-                    <h3 id="monthlyExpenses">$0</h3>
-                    <p>Monthly Expenses</p>
+                    <h3 id="monthlyExpenses">₹0</h3>
+                    <p>This Month's Expenses</p>
                     <div class="trend negative">
-                        <i class="bi bi-arrow-up"></i> +12%
+                        <i class="bi bi-arrow-up"></i> Current
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6 col-lg-3">
                 <div class="stat-card savings-card">
                     <div class="stat-icon">
                         <i class="bi bi-piggy-bank"></i>
                     </div>
-                    <h3 id="monthlySavings">$0</h3>
+                    <h3 id="monthlySavings">₹0</h3>
                     <p>Monthly Savings</p>
                     <div class="trend positive">
-                        <i class="bi bi-arrow-up"></i> +8%
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stat-card goals-card">
-                    <div class="stat-icon">
-                        <i class="bi bi-flag"></i>
-                    </div>
-                    <h3 id="goalsCount">0</h3>
-                    <p>Active Goals</p>
-                    <div class="trend neutral">
-                        <i class="bi bi-dash"></i> Ongoing
+                        <i class="bi bi-arrow-up"></i> Current
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row g-4">
-            <!-- Financial Goals Section -->
-            <div class="col-lg-6">
+            <!-- Left Column -->
+            <div class="col-lg-8">
+                <!-- Quick Insights -->
                 <div class="dashboard-section">
                     <div class="section-header">
-                        <h3><i class="bi bi-flag me-2"></i>Your Financial Goals</h3>
-                        <button class="btn btn-sm btn-outline-primary">Add Goal</button>
+                        <h3><i class="bi bi-lightbulb me-2"></i>Quick Insights</h3>
                     </div>
-                    <div class="goals-container" id="goalsContainer">
-                        <!-- Goals will be dynamically loaded here -->
+                    <div class="insights-container" id="insightsContainer">
+                        <div class="text-center py-4">
+                            <div class="spinner"></div>
+                            <p class="mt-3 text-muted">Loading your financial insights...</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Quick Actions -->
+                <!-- Recent Transactions -->
                 <div class="dashboard-section">
                     <div class="section-header">
-                        <h3><i class="bi bi-lightning me-2"></i>Quick Actions</h3>
+                        <h3><i class="bi bi-clock-history me-2"></i>Recent Transactions</h3>
+                        <button class="btn btn-sm btn-outline-primary"
+                            onclick="window.location.href='transactions.html'">
+                            View All
+                        </button>
                     </div>
-                    <div class="quick-actions">
-                        <div class="action-item" onclick="quickAction('add-expense')">
-                            <div class="action-icon">
-                                <i class="bi bi-plus-circle"></i>
-                            </div>
-                            <span>Add Expense</span>
-                        </div>
-                        <div class="action-item" onclick="quickAction('set-budget')">
-                            <div class="action-icon">
-                                <i class="bi bi-wallet2"></i>
-                            </div>
-                            <span>Set Budget</span>
-                        </div>
-                        <div class="action-item" onclick="quickAction('view-reports')">
-                            <div class="action-icon">
-                                <i class="bi bi-graph-up"></i>
-                            </div>
-                            <span>View Reports</span>
-                        </div>
-                        <div class="action-item" onclick="quickAction('savings-plan')">
-                            <div class="action-icon">
-                                <i class="bi bi-piggy-bank"></i>
-                            </div>
-                            <span>Savings Plan</span>
+                    <div class="transactions-list" id="recentTransactions">
+                        <div class="text-center py-4">
+                            <div class="spinner"></div>
+                            <p class="mt-3 text-muted">Loading transactions...</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Recent Activity & Notifications -->
-            <div class="col-lg-6">
-                <!-- Recent Activity -->
-                <div class="dashboard-section">
-                    <div class="section-header">
-                        <h3><i class="bi bi-clock-history me-2"></i>Recent Activity</h3>
-                    </div>
-                    <div class="activity-list" id="activityList">
-                        <div class="activity-item">
-                            <div class="activity-icon success">
-                                <i class="bi bi-check-circle"></i>
-                            </div>
-                            <div class="activity-content">
-                                <strong>Registration Completed</strong>
-                                <small>Welcome to FinTrack! Your account is ready.</small>
-                                <span class="activity-time">Just now</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Notifications -->
-                <div class="dashboard-section">
-                    <div class="section-header">
-                        <h3><i class="bi bi-bell me-2"></i>Notifications</h3>
-                    </div>
-                    <div class="notifications-list" id="notificationsList">
-                        <div class="notification-item">
-                            <div class="notification-icon info">
-                                <i class="bi bi-info-circle"></i>
-                            </div>
-                            <div class="notification-content">
-                                <strong>Setup Reminder</strong>
-                                <small>Complete your profile to get personalized insights</small>
-                                <span class="notification-time">5 min ago</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- Right Column -->
+            <div class="col-lg-4">
                 <!-- Budget Progress -->
                 <div class="dashboard-section">
                     <div class="section-header">
-                        <h3><i class="bi bi-pie-chart me-2"></i>Budget Progress</h3>
+                        <h3><i class="bi bi-wallet2 me-2"></i>Budget Progress</h3>
+                        <button class="btn btn-sm btn-outline-primary" onclick="window.location.href='budgets.html'">
+                            Manage
+                        </button>
                     </div>
-                    <div class="budget-progress">
-                        <div class="progress-item">
-                            <div class="progress-label">
-                                <span>Monthly Budget</span>
-                                <span>$2,500 / $3,000</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="progress-item">
-                            <div class="progress-label">
-                                <span>Savings Target</span>
-                                <span>$800 / $1,000</span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" style="width: 80%"></div>
-                            </div>
+                    <div class="budget-progress" id="budgetProgress">
+                        <div class="text-center py-4">
+                            <div class="spinner"></div>
+                            <p class="mt-3 text-muted">Loading budgets...</p>
                         </div>
                     </div>
+                </div>
+
+                <!-- In dashboard.html -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3><i class="bi bi-flag me-2"></i>Financial Goals</h3>
+                        <button class="btn btn-sm btn-outline-primary" onclick="window.location.href='goals.html'">
+                            Manage Goals
+                        </button>
+                    </div>
+                    <div class="goals-container" id="goalsContainer">
+                        <div class="text-center py-4">
+                            <div class="spinner"></div>
+                            <p class="mt-3 text-muted">Loading your goals...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3><i class="bi bi-graph-up me-2"></i>Quick Stats</h3>
+                    </div>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Transactions Today</div>
+                            <div class="stat-value" id="todayTransactionCount">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Budget Categories</div>
+                            <div class="stat-value" id="budgetCategoriesCount">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Active Goals</div>
+                            <div class="stat-value" id="activeGoalsCount">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Active Loans</div>
+                            <div class="stat-value" id="activeLoansCount">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Loans Completion</div>
+                            <div class="stat-value" id="loansCompletion">0%</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Savings Rate</div>
+                            <div class="stat-value" id="savingsRate">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Loans Panel -->
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h3><i class="bi bi-bank2 me-2"></i>Active Loans</h3>
+                        <button class="btn btn-sm btn-outline-primary" onclick="window.location.href='loan-calculator.html'">Manage Loans</button>
+                    </div>
+                    <div class="active-loans-panel" id="activeLoansPanel">
+                        <div class="text-center py-4">
+                            <div class="spinner"></div>
+                            <p class="mt-3 text-muted">Loading loans...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Transaction Modal -->
+    <div class="modal fade" id="addTransactionModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Transaction</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTransactionForm">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">Type</label>
+                                <div class="btn-group w-100" role="group">
+                                    <input type="radio" class="btn-check" name="type" id="typeIncome" value="income"
+                                        checked>
+                                    <label class="btn btn-outline-success" for="typeIncome">Income</label>
+
+                                    <input type="radio" class="btn-check" name="type" id="typeExpense" value="expense">
+                                    <label class="btn btn-outline-danger" for="typeExpense">Expense</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="amount" class="form-label">Amount</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">₹</span>
+                                    <input type="number" class="form-control" id="amount" step="0.01" min="0" required>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="category" class="form-label">Category</label>
+                                <select class="form-select" id="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="Food & Dining">Food & Dining</option>
+                                    <option value="Groceries">Groceries</option>
+                                    <option value="Transportation">Transportation</option>
+                                    <option value="Entertainment">Entertainment</option>
+                                    <option value="Bills & Utilities">Bills & Utilities</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Shopping">Shopping</option>
+                                    <option value="Travel">Travel</option>
+                                    <option value="EMI & Loans">EMI & Loans</option>
+                                    <option value="Investments">Investments</option>
+                                    <option value="Insurance">Insurance</option>
+                                    <option value="Rent">Rent</option>
+                                    <option value="Fuel">Fuel</option>
+                                    <option value="Mobile & Internet">Mobile & Internet</option>
+                                    <option value="Salary">Salary</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="description" class="form-label">Description</label>
+                                <input type="text" class="form-control" id="description" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="transactionDate" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="transactionDate" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="addTransaction()">Add Transaction</button>
                 </div>
             </div>
         </div>
@@ -257,10 +398,10 @@
                     <h5>Quick Links</h5>
                     <ul>
                         <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="profile.html">Profile</a></li>
-                        <li><a href="#">Budget</a></li>
-                        <li><a href="#">Reports</a></li>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="transactions.html">Transactions</a></li>
+                        <li><a href="financial-overview.html">Financial Overview</a></li>
+                        <li><a href="budgets.html">Budgets</a></li>
+                        <li><a href="../index.html">Home</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -274,13 +415,187 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>© 2025 FinTrack | Welcome, <span id="footerUserName">User</span>!</p>
+                <p>© 2025 FinTrack | Welcome, <span id="footerUserName" data-user="firstName">User</span>!</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/dashboard.js"></script>
+
+    <script>
+        // Enhanced dashboard initialization with Indian Rupee support
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if dashboard.js is loaded, if not initialize basic functionality
+            if (typeof Dashboard === 'undefined') {
+                console.warn('Dashboard class not found, initializing basic functionality');
+                initializeBasicDashboard();
+            }
+        });
+
+        function initializeBasicDashboard() {
+            // Basic authentication check
+            const token = localStorage.getItem('fintrack_token');
+            const user = localStorage.getItem('fintrack_user');
+
+            if (!token || !user) {
+                window.location.href = '../login.html';
+                return;
+            }
+
+            // Update user info
+            try {
+                const userData = JSON.parse(user);
+                updateUserInfo(userData);
+            } catch (error) {
+                console.error('Error parsing user data:', error);
+            }
+
+            // Set current date
+            const dateElement = document.getElementById('dashboardDate');
+            if (dateElement) {
+                const now = new Date();
+                const options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                };
+                dateElement.textContent = now.toLocaleDateString('en-US', options);
+            }
+
+            // Setup modal date
+            const transactionDateInput = document.getElementById('transactionDate');
+            if (transactionDateInput) {
+                transactionDateInput.value = new Date().toISOString().split('T')[0];
+            }
+        }
+
+        function updateUserInfo(user) {
+            // Update welcome message
+            const welcomeElement = document.getElementById('welcomeMessage');
+            if (welcomeElement && user.firstName) {
+                welcomeElement.textContent = `Welcome back, ${user.firstName}!`;
+            }
+
+            // Update user details
+            const userNameElement = document.getElementById('userName');
+            const userEmailElement = document.getElementById('userEmail');
+            const footerUserNameElement = document.getElementById('footerUserName');
+
+            if (userNameElement) {
+                userNameElement.textContent = `${user.firstName} ${user.lastName}`;
+            }
+            if (userEmailElement) {
+                userEmailElement.textContent = user.email;
+            }
+            if (footerUserNameElement) {
+                footerUserNameElement.textContent = user.firstName;
+            }
+        }
+
+        // Global functions for modal handling
+        function showAddTransactionModal() {
+            const modal = new bootstrap.Modal(document.getElementById('addTransactionModal'));
+
+            // Reset form and set current date
+            const form = document.getElementById('addTransactionForm');
+            if (form) {
+                form.reset();
+            }
+
+            const transactionDate = document.getElementById('transactionDate');
+            if (transactionDate) {
+                transactionDate.value = new Date().toISOString().split('T')[0];
+            }
+
+            const typeIncome = document.getElementById('typeIncome');
+            if (typeIncome) {
+                typeIncome.checked = true;
+            }
+
+            modal.show();
+        }
+
+        function addTransaction() {
+            // This will be handled by dashboard.js
+            if (window.dashboard && typeof window.dashboard.addTransaction === 'function') {
+                window.dashboard.addTransaction();
+            } else {
+                // Fallback basic implementation
+                console.warn('Dashboard addTransaction not available');
+                alert('Please wait for dashboard to load completely');
+            }
+        }
+
+        // Format currency for Indian Rupees
+        function formatIndianRupee(amount) {
+            if (amount >= 10000000) {
+                return '₹' + (amount / 10000000).toFixed(2) + ' Cr';
+            } else if (amount >= 100000) {
+                return '₹' + (amount / 100000).toFixed(2) + ' L';
+            } else if (amount >= 1000) {
+                return '₹' + (amount / 1000).toFixed(2) + ' K';
+            } else {
+                return '₹' + amount.toFixed(2);
+            }
+        }
+
+        function formatIndianRupeeDetailed(amount) {
+            return new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            }).format(amount);
+        }
+
+        // Handle logout
+        document.addEventListener('click', function (e) {
+            if (e.target.closest('#logoutLink') || e.target.closest('.logout-btn')) {
+                e.preventDefault();
+
+                // Remove auth data
+                localStorage.removeItem('fintrack_token');
+                localStorage.removeItem('fintrack_user');
+
+                // Show logout message
+                if (window.AuthUtils && typeof window.AuthUtils.showMessage === 'function') {
+                    window.AuthUtils.showMessage('Logged out successfully', 'info');
+                } else {
+                    alert('Logged out successfully');
+                }
+
+                // Redirect to home page
+                setTimeout(() => {
+                    window.location.href = '../index.html';
+                }, 1000);
+            }
+        });
+
+        // Handle page visibility changes to refresh data
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden && window.dashboard && typeof window.dashboard.loadDashboardData === 'function') {
+                // Page became visible, refresh data
+                window.dashboard.loadDashboardData();
+            }
+        });
+
+        // Handle online/offline status
+        window.addEventListener('online', function () {
+            if (window.dashboard && typeof window.dashboard.loadDashboardData === 'function') {
+                window.dashboard.loadDashboardData();
+            }
+        });
+
+        // Error handling for chart.js
+        window.addEventListener('error', function (e) {
+            console.error('Global error:', e.error);
+        });
+    </script>
 </body>
+
 </html>

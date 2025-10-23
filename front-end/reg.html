@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,58 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/auth.css">
+  <link rel="stylesheet" href="styles/main.css">
+  
+  <!-- Add this style for registration steps -->
+  <style>
+    .step-content {
+      display: none;
+    }
+    .step-content.active {
+      display: block;
+    }
+    .goal-option.selected {
+      border-color: #FF9800;
+      background: rgba(255,152,0,0.1);
+    }
+    .btn-next, .btn-submit {
+      background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    .btn-prev {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 12px 30px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    /* Make typed input text white and placeholders slightly faded for registration form */
+    .registration-right .form-control {
+      color: #ffffff;
+      background: transparent;
+    }
+    .registration-right .form-control::placeholder {
+      color: rgba(255,255,255,0.7);
+      opacity: 1;
+    }
+    .registration-right .form-control:focus {
+      color: #ffffff;
+      box-shadow: none;
+    }
+    /* Step 3: make dropdown/select text black for readability */
+    #stepContent3 select,
+    #stepContent3 select option {
+      color: #000000 !important;
+      background: #ffffff !important;
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- Animated Background -->
@@ -17,30 +69,65 @@
     <div class="bg-circle circle-2"></div>
     <div class="bg-circle circle-3"></div>
   </div>
-  
+
   <div class="particles" id="particles"></div>
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">
-        <i class="bi bi-graph-up"></i><span>Fin</span>Track
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Tools</a></li>
-          <li class="nav-item"><a class="nav-link" href="pages/blog.html">Blogs</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-          <li class="nav-item ms-2"><a class="nav-link btn-register" href="#">Register</a></li>
-        </ul>
-      </div>
+        <a class="navbar-brand" href="index.html">
+            <i class="bi bi-graph-up"></i><span>Fin</span>Track
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/blog.html">Blogs</a>
+                </li>
+
+                <!-- Dynamic Auth Links -->
+                <li class="nav-item" id="loginNavItem">
+                    <a class="nav-link" href="login.html" id="loginLink">
+                        <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                    </a>
+                </li>
+                <li class="nav-item ms-2" id="registerNavItem">
+                    <a class="nav-link btn-register active" href="reg.html" id="registerLink">
+                        <i class="bi bi-person-plus me-1"></i>Register
+                    </a>
+                </li>
+                
+                <!-- Protected Links - Hidden by default -->
+                <li class="nav-item" id="dashboardNavItem" style="display: none;">
+                    <a class="nav-link" href="pages/dashboard.html" id="dashboardLink">
+                        <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item" id="profileNavItem" style="display: none;">
+                    <a class="nav-link" href="pages/profile.html" id="profileLink">
+                        <i class="bi bi-person me-1"></i>Profile
+                    </a>
+                </li>
+                <li class="nav-item ms-2" id="logoutNavItem" style="display: none;">
+                    <a class="nav-link logout-btn" href="#" id="logoutLink">
+                        <i class="bi bi-box-arrow-right me-1"></i>Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </nav>
+</nav>
 
   <!-- Registration Section -->
   <section class="registration-section">
@@ -49,7 +136,7 @@
         <div class="registration-left">
           <h2>Join FinTrack Pro</h2>
           <p>Begin your journey to financial freedom with our advanced tools and insights.</p>
-          
+
           <ul class="benefits-list">
             <li>
               <i class="bi bi-wallet2"></i>
@@ -81,7 +168,7 @@
             </li>
           </ul>
         </div>
-        
+
         <div class="registration-right">
           <!-- Progress Steps -->
           <div class="progress-container">
@@ -93,13 +180,13 @@
             <div class="progress-step" id="step3">3</div>
             <div class="progress-step" id="step4">4</div>
           </div>
-          
+
           <!-- Step 1: Personal Info -->
           <div class="step-content active" id="stepContent1">
             <h2 class="registration-title">Personal Information</h2>
             <p class="registration-subtitle">Let's get to know you better</p>
-            
-            <form>
+
+            <form id="step1Form">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -114,139 +201,148 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="form-group">
                 <label for="email" class="form-label"><i class="bi bi-envelope"></i> Email Address</label>
                 <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
               </div>
-              
+
               <div class="form-group">
                 <label for="phone" class="form-label"><i class="bi bi-phone"></i> Phone Number</label>
                 <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
               </div>
-              
+
               <div class="nav-buttons">
-                <div></div> <!-- Empty div for spacing -->
-                <button type="button" class="btn btn-next" onclick="nextStep(1)">Next <i class="bi bi-arrow-right"></i></button>
+                <div></div>
+                <button type="button" class="btn btn-next" onclick="nextStep(1)">Next <i
+                    class="bi bi-arrow-right"></i></button>
               </div>
             </form>
           </div>
-          
+
           <!-- Step 2: Account Setup -->
           <div class="step-content" id="stepContent2">
             <h2 class="registration-title">Account Setup</h2>
             <p class="registration-subtitle">Secure your account with strong credentials</p>
-            
-            <form>
+
+            <form id="step2Form">
               <div class="form-group">
                 <label for="password" class="form-label"><i class="bi bi-lock"></i> Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Create a strong password" required>
+                <input type="password" class="form-control" id="password" placeholder="Create a strong password"
+                  required>
                 <i class="bi bi-eye-slash password-toggle input-icon" id="togglePassword"></i>
               </div>
-              
+
               <div class="form-group">
                 <label for="confirmPassword" class="form-label"><i class="bi bi-lock"></i> Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password"
+                  required>
                 <i class="bi bi-eye-slash password-toggle input-icon" id="toggleConfirmPassword"></i>
               </div>
-              
+
               <div class="form-group">
                 <label class="form-label"><i class="bi bi-shield"></i> Security Question</label>
-                <select class="form-control" id="securityQuestion">
+                <select class="form-control" id="securityQuestion" required>
                   <option value="">Select a security question</option>
-                  <option value="1">What was your first pet's name?</option>
-                  <option value="2">What city were you born in?</option>
-                  <option value="3">What is your mother's maiden name?</option>
-                  <option value="4">What was your first car model?</option>
+                  <option value="What was your first pet's name?">What was your first pet's name?</option>
+                  <option value="What city were you born in?">What city were you born in?</option>
+                  <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                  <option value="What was your first car model?">What was your first car model?</option>
                 </select>
               </div>
-              
+
               <div class="form-group">
                 <input type="text" class="form-control" id="securityAnswer" placeholder="Enter your answer" required>
               </div>
-              
+
               <div class="nav-buttons">
-                <button type="button" class="btn btn-prev" onclick="prevStep(2)"><i class="bi bi-arrow-left"></i> Previous</button>
-                <button type="button" class="btn btn-next" onclick="nextStep(2)">Next <i class="bi bi-arrow-right"></i></button>
+                <button type="button" class="btn btn-prev" onclick="prevStep(2)"><i class="bi bi-arrow-left"></i>
+                  Previous</button>
+                <button type="button" class="btn btn-next" onclick="nextStep(2)">Next <i
+                    class="bi bi-arrow-right"></i></button>
               </div>
             </form>
           </div>
-          
+
           <!-- Step 3: Financial Goals -->
           <div class="step-content" id="stepContent3">
             <h2 class="registration-title">Financial Goals</h2>
             <p class="registration-subtitle">What would you like to achieve with FinTrack?</p>
-            
+
             <div class="goal-options">
               <div class="goal-option" onclick="selectGoal(this)">
                 <i class="bi bi-house"></i>
                 <h5>Save for a Home</h5>
                 <p>Plan and track your down payment savings</p>
               </div>
-              
+
               <div class="goal-option" onclick="selectGoal(this)">
                 <i class="bi bi-currency-dollar"></i>
                 <h5>Debt Reduction</h5>
                 <p>Create a plan to become debt-free</p>
               </div>
-              
+
               <div class="goal-option" onclick="selectGoal(this)">
                 <i class="bi bi-airplane"></i>
                 <h5>Travel Fund</h5>
                 <p>Save for your dream vacation</p>
               </div>
-              
+
               <div class="goal-option" onclick="selectGoal(this)">
                 <i class="bi bi-graph-up"></i>
                 <h5>Investment Growth</h5>
                 <p>Track and optimize your investments</p>
               </div>
             </div>
-            
+
             <div class="form-group">
-              <label for="monthlyIncome" class="form-label"><i class="bi bi-currency-exchange"></i> Monthly Income ($)</label>
-              <input type="number" class="form-control" id="monthlyIncome" placeholder="Enter your approximate monthly income">
+              <label for="monthlyIncome" class="form-label"><i class="bi bi-currency-exchange"></i> Monthly Income
+                ($)</label>
+              <input type="number" class="form-control" id="monthlyIncome"
+                placeholder="Enter your approximate monthly income">
             </div>
-            
+
             <div class="nav-buttons">
-              <button type="button" class="btn btn-prev" onclick="prevStep(3)"><i class="bi bi-arrow-left"></i> Previous</button>
-              <button type="button" class="btn btn-next" onclick="nextStep(3)">Next <i class="bi bi-arrow-right"></i></button>
+              <button type="button" class="btn btn-prev" onclick="prevStep(3)"><i class="bi bi-arrow-left"></i>
+                Previous</button>
+              <button type="button" class="btn btn-next" onclick="nextStep(3)">Next <i
+                  class="bi bi-arrow-right"></i></button>
             </div>
           </div>
-          
+
           <!-- Step 4: Preferences -->
           <div class="step-content" id="stepContent4">
             <h2 class="registration-title">Almost Done!</h2>
             <p class="registration-subtitle">Customize your FinTrack experience</p>
-            
+
             <div class="form-group">
               <label class="form-label"><i class="bi bi-bell"></i> Notification Preferences</label>
-              
+
               <label class="custom-checkbox">
-                <input type="checkbox" checked>
+                <input type="checkbox" id="billReminders" checked>
                 <span class="checkmark"></span>
                 Bill payment reminders
               </label>
-              
+
               <label class="custom-checkbox">
-                <input type="checkbox" checked>
+                <input type="checkbox" id="budgetAlerts" checked>
                 <span class="checkmark"></span>
                 Budget alerts
               </label>
-              
+
               <label class="custom-checkbox">
-                <input type="checkbox" checked>
+                <input type="checkbox" id="investmentUpdates" checked>
                 <span class="checkmark"></span>
                 Investment updates
               </label>
-              
+
               <label class="custom-checkbox">
-                <input type="checkbox">
+                <input type="checkbox" id="marketingNewsletters">
                 <span class="checkmark"></span>
                 Marketing newsletters
               </label>
             </div>
-            
+
             <div class="form-group">
               <label class="form-label"><i class="bi bi-bar-chart"></i> Dashboard View</label>
               <select class="form-control" id="dashboardView">
@@ -255,32 +351,33 @@
                 <option value="advanced">Advanced Financial Metrics</option>
               </select>
             </div>
-            
+
             <div class="form-check mb-4">
               <input class="form-check-input" type="checkbox" id="termsCheck" required>
               <label class="form-check-label" for="termsCheck">
                 I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
               </label>
             </div>
-            
+
             <div class="nav-buttons">
-              <button type="button" class="btn btn-prev" onclick="prevStep(4)"><i class="bi bi-arrow-left"></i> Previous</button>
+              <button type="button" class="btn btn-prev" onclick="prevStep(4)"><i class="bi bi-arrow-left"></i>
+                Previous</button>
               <button type="button" class="btn btn-submit" onclick="submitForm()">Create Account</button>
             </div>
           </div>
-          
-          <!-- Success Message (initially hidden) -->
+
+          <!-- Success Message -->
           <div class="step-content" id="successContent">
             <div class="success-animation">
               <svg class="checkmark-animation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
               </svg>
-              
+
               <h2 class="registration-title">Account Created Successfully!</h2>
               <p class="registration-subtitle">Welcome to FinTrack Pro. Your financial journey begins now.</p>
-              
-              <button type="button" class="btn btn-submit" onclick="window.location.href='#'">Go to Dashboard</button>
+
+              <button type="button" class="btn btn-submit" onclick="window.location.href='pages/dashboard.html'">Go to Dashboard</button>
             </div>
           </div>
         </div>
@@ -294,7 +391,8 @@
       <div class="footer-content">
         <div class="footer-brand">
           <h4><span>Fin</span>Track</h4>
-          <p>Empowering you to take control of your finances and build a secure financial future through smart budgeting and planning.</p>
+          <p>Empowering you to take control of your finances and build a secure financial future through smart budgeting
+            and planning.</p>
           <div class="social-icons">
             <a href="#"><i class="bi bi-facebook"></i></a>
             <a href="#"><i class="bi bi-twitter"></i></a>
@@ -302,18 +400,18 @@
             <a href="#"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
-        
+
         <div class="footer-links">
           <h5>Quick Links</h5>
           <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="#">Features</a></li>
-            <li><a href="#">Blog</a></li>
+            <li><a href="pages/blog.html">Blog</a></li>
             <li><a href="#">Pricing</a></li>
             <li><a href="#">Contact</a></li>
           </ul>
         </div>
-        
+
         <div class="footer-links">
           <h5>Features</h5>
           <ul>
@@ -324,17 +422,17 @@
             <li><a href="#">Reports</a></li>
           </ul>
         </div>
-        
+
         <div class="footer-links">
           <h5>Contact Us</h5>
           <ul>
-            <li><i class="bi bi-geo-alt me-2"></i> 123 Finance St, Moneyville</li>
+            <li><i class="bi bi-geo-alt me-2"></i> RGUKT-Basar</li>
             <li><i class="bi bi-envelope me-2"></i> info@fintrack.com</li>
-            <li><i class="bi bi-phone me-2"></i> +1 (555) 123-4567</li>
+            <li><i class="bi bi-phone me-2"></i> +91 9182183086</li>
           </ul>
         </div>
       </div>
-      
+
       <div class="copyright">
         <p>© 2025 FinTrack | Designed by Team CSE. All rights reserved.</p>
       </div>
@@ -343,5 +441,253 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/auth.js"></script>
+  
+  <!-- Add this fallback script in case auth.js doesn't load properly -->
+  <script>
+    // Fallback registration functions
+    if (typeof nextStep === 'undefined') {
+      console.log('Registration functions not found, loading fallback...');
+      
+      let currentStep = 1;
+      const totalSteps = 4;
+
+      function nextStep(step) {
+        if (step < totalSteps) {
+          if (validateStep(step)) {
+            updateProgress(step + 1);
+            showStep(step + 1);
+          }
+        } else if (step === totalSteps) {
+          if (validateStep(step)) {
+            submitForm();
+          }
+        }
+      }
+
+      function prevStep(step) {
+        if (step > 1) {
+          updateProgress(step - 1);
+          showStep(step - 1);
+        }
+      }
+
+      function validateStep(step) {
+        switch(step) {
+          case 1:
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            
+            if (!firstName || !lastName || !email) {
+              alert('Please fill in all required fields');
+              return false;
+            }
+            
+            if (!isValidEmail(email)) {
+              alert('Please enter a valid email address');
+              return false;
+            }
+            return true;
+            
+          case 2:
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const securityQuestion = document.getElementById('securityQuestion').value;
+            const securityAnswer = document.getElementById('securityAnswer').value;
+            
+            if (!password || !confirmPassword || !securityQuestion || !securityAnswer) {
+              alert('Please fill in all required fields');
+              return false;
+            }
+            
+            if (password.length < 6) {
+              alert('Password must be at least 6 characters long');
+              return false;
+            }
+            
+            if (password !== confirmPassword) {
+              alert('Passwords do not match');
+              return false;
+            }
+            return true;
+            
+          case 3:
+            return true;
+            
+          case 4:
+            const termsCheck = document.getElementById('termsCheck');
+            if (!termsCheck.checked) {
+              alert('Please agree to the Terms of Service and Privacy Policy');
+              return false;
+            }
+            return true;
+            
+          default:
+            return true;
+        }
+      }
+
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+
+      function updateProgress(step) {
+        currentStep = step;
+        
+        const progressFill = document.getElementById('progressFill');
+        const progressPercentage = ((step - 1) / (totalSteps - 1)) * 100;
+        progressFill.style.width = `${progressPercentage}%`;
+        
+        for (let i = 1; i <= totalSteps; i++) {
+          const stepElement = document.getElementById(`step${i}`);
+          if (i < step) {
+            stepElement.classList.add('completed');
+            stepElement.classList.remove('active');
+          } else if (i === step) {
+            stepElement.classList.add('active');
+            stepElement.classList.remove('completed');
+          } else {
+            stepElement.classList.remove('active', 'completed');
+          }
+        }
+      }
+
+      function showStep(step) {
+        for (let i = 1; i <= totalSteps + 1; i++) {
+          const stepContent = document.getElementById(`stepContent${i}`);
+          const successContent = document.getElementById('successContent');
+          
+          if (stepContent) stepContent.classList.remove('active');
+          if (successContent) successContent.classList.remove('active');
+        }
+        
+        const currentStepContent = document.getElementById(`stepContent${step}`);
+        if (currentStepContent) {
+          currentStepContent.classList.add('active');
+        }
+      }
+
+      function selectGoal(element) {
+        const goalOptions = document.querySelectorAll('.goal-option');
+        goalOptions.forEach(option => option.classList.remove('selected'));
+        element.classList.add('selected');
+      }
+
+      async function submitForm() {
+        const submitBtn = document.querySelector('.btn-submit');
+        const originalText = submitBtn.innerHTML;
+
+        try {
+          submitBtn.innerHTML = '<div class="spinner"></div> Creating Account...';
+          submitBtn.disabled = true;
+
+          const registrationData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value,
+            securityQuestion: document.getElementById('securityQuestion').value,
+            securityAnswer: document.getElementById('securityAnswer').value,
+            monthlyIncome: parseFloat(document.getElementById('monthlyIncome').value) || 0,
+            phone: document.getElementById('phone').value || ''
+          };
+
+          const response = await fetch('http://localhost:3001/api/auth/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(registrationData)
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            localStorage.setItem('fintrack_token', data.token);
+            localStorage.setItem('fintrack_user', JSON.stringify(data.user));
+            // Ensure legacy global loans are cleared so new users don't see other users' loans
+            try {
+                // Remove the old shared key
+                localStorage.removeItem('loans');
+                // Initialize a per-user loans key to avoid accidental sharing
+                const uid = data.user && (data.user._id || data.user.id || data.user.email);
+                if (uid) {
+                    const userLoansKey = `loans_${uid}`;
+                    if (!localStorage.getItem(userLoansKey)) {
+                        localStorage.setItem(userLoansKey, JSON.stringify([]));
+                    }
+                }
+            } catch (e) {
+                // ignore localStorage errors
+            }
+            showStep(totalSteps + 1);
+            setTimeout(() => {
+              window.location.href = 'pages/dashboard.html';
+            }, 2000);
+          } else {
+            throw new Error(data.message || 'Registration failed');
+          }
+
+        } catch (error) {
+          alert(error.message || 'Registration failed. Please try again.');
+        } finally {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
+      }
+
+      // Setup password toggles (robust selector: looks for nearest input[type=password|text])
+      document.addEventListener('click', (e) => {
+        if (e.target.classList && e.target.classList.contains('password-toggle')) {
+          // find the nearest input in the same form-group or previous sibling
+          let input = null;
+          const parent = e.target.parentElement;
+          if (parent) {
+            input = parent.querySelector('input[type="password"], input[type="text"]');
+          }
+          if (!input) {
+            // fallback: previousElementSibling if that's an input
+            const prev = e.target.previousElementSibling;
+            if (prev && prev.tagName === 'INPUT') input = prev;
+          }
+          if (!input) return;
+
+          if (input.type === 'password') {
+            input.type = 'text';
+            e.target.classList.remove('bi-eye-slash');
+            e.target.classList.add('bi-eye');
+            e.target.setAttribute('aria-pressed', 'true');
+          } else {
+            input.type = 'password';
+            e.target.classList.remove('bi-eye');
+            e.target.classList.add('bi-eye-slash');
+            e.target.setAttribute('aria-pressed', 'false');
+          }
+        }
+      });
+
+      // Add spinner style
+      const spinnerStyle = document.createElement('style');
+      spinnerStyle.textContent = `
+        .spinner {
+          width: 18px;
+          height: 18px;
+          border: 2px solid transparent;
+          border-top: 2px solid #ffffff;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          display: inline-block;
+          margin-right: 8px;
+        }
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `;
+      document.head.appendChild(spinnerStyle);
+    }
+  </script>
 </body>
+
 </html>

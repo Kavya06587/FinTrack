@@ -1,6 +1,8 @@
 // Make blog cards draggable for horizontal scrolling
 document.addEventListener('DOMContentLoaded', function() {
   const track = document.querySelector('.blog-scroll-track');
+  if (!track) return;
+  
   let isDown = false;
   let startX;
   let scrollLeft;
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - track.offsetLeft;
-    const walk = (x - startX) * 2; // Scroll-fastness
+    const walk = (x - startX) * 2;
     track.scrollLeft = scrollLeft - walk;
   });
   

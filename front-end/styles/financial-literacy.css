@@ -1,0 +1,445 @@
+/* Financial Literacy Page Styles */
+
+.hero-financial-literacy {
+    background: linear-gradient(135deg, #ff9e00 0%, #ff6d00 100%);
+    color: white;
+    padding: 100px 0 80px;
+    text-align: center;
+}
+
+.hero-financial-literacy h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero-financial-literacy .lead {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    opacity: 0.9;
+}
+
+.score-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.score-card {
+    background: linear-gradient(135deg, #ff9e00 0%, #ff6d00 100%);
+    border-radius: 20px;
+    padding: 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(255, 157, 0, 0.3);
+}
+
+.score-content h2 {
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.score-content p {
+    opacity: 0.9;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.score-visual {
+    text-align: center;
+}
+
+.score-circle {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: 0 auto 15px;
+}
+
+.circle-progress {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(#fff 0%, rgba(255,255,255,0.3) 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.circle-progress::before {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: #ff9e00;
+    border-radius: 50%;
+    top: 15px;
+    left: 15px;
+}
+
+.progress-value {
+    position: relative;
+    font-size: 1.8rem;
+    font-weight: 700;
+    z-index: 1;
+}
+
+.score-label {
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.modules-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.section-title p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.module-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.module-badge {
+    background: #ff9e00;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.module-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress-bar {
+    width: 60px;
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #ff9e00;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.module-icon {
+    width: 60px;
+    height: 60px;
+    background: #fff3e0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff9e00;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.module-card h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.module-card p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.module-stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.stat i {
+    color: #ff9e00;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #ff9e00;
+    color: #ff9e00;
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-outline:hover {
+    background: #ff9e00;
+    color: white;
+}
+
+.concepts-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.concepts-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.accordion-item {
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.accordion-button {
+    background: white;
+    color: #333;
+    font-weight: 600;
+    padding: 20px 25px;
+    border: none;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background: #fff3e0;
+    color: #ff9e00;
+    box-shadow: none;
+}
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ff9e00'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ff9e00'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-body {
+    padding: 25px;
+    background: #f8f9fa;
+}
+
+.accordion-body p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.concept-example {
+    background: white;
+    border-left: 4px solid #ff9e00;
+    padding: 15px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.9rem;
+}
+
+.health-check-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.health-check-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.health-check-content h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.health-check-content p {
+    color: #666;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.health-metrics {
+    margin-bottom: 30px;
+}
+
+.metric {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.metric-icon {
+    width: 50px;
+    height: 50px;
+    background: #fff3e0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff9e00;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.metric-info {
+    flex: 1;
+}
+
+.metric-info h5 {
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.metric-info p {
+    color: #666;
+    margin: 0;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-badge.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-badge.warning {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.status-badge.danger {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-financial-literacy {
+        padding: 80px 0 60px;
+    }
+    
+    .hero-financial-literacy h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-financial-literacy .lead {
+        font-size: 1.1rem;
+    }
+    
+    .score-section,
+    .modules-section,
+    .concepts-section,
+    .health-check-section {
+        padding: 60px 0;
+    }
+    
+    .score-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+        padding: 30px 25px;
+    }
+    
+    .modules-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metric {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .metric-info p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .module-card,
+    .health-check-card {
+        padding: 20px;
+    }
+    
+    .accordion-button {
+        padding: 15px 20px;
+    }
+    
+    .accordion-body {
+        padding: 20px;
+    }
+}

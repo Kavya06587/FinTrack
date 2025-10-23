@@ -43,9 +43,118 @@
 .border-accent {
     border-color: var(--accent) !important;
 }
-/* Add to your existing main.css */
 
-/* Common Navbar Styles (from home.css) */
+/* Common Footer Styles */
+footer {
+    background: var(--dark);
+    color: #ddd;
+    padding: 60px 0 20px;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-brand h4 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.footer-brand h4 span {
+    color: var(--accent);
+}
+
+.footer-brand p {
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: rgba(255,255,255,0.7);
+}
+
+.footer-links h5 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-links h5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+    transform: translateX(5px);
+}
+
+.footer-links li i {
+    margin-right: 8px;
+    color: var(--accent);
+    width: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    color: #fff;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    background: var(--accent);
+    transform: translateY(-5px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.5);
+}
+
+/* Common Navbar Styles */
 .navbar {
     background-color: var(--dark);
     padding: 15px 0;
@@ -118,157 +227,5 @@
     text-decoration: none;
     border-radius: 8px;
     transition: all 0.2s ease;
-    margin: 8px 0;
-    font-weight: 500;
-}
-
-.nav-popup a:hover {
-    background: rgba(42, 77, 110, 0.08);
-    padding-left: 20px;
-    transform: translateX(5px);
-}
-
-.nav-popup a i {
-    margin-right: 12px;
-    color: var(--accent);
-    font-size: 1.1rem;
-    width: 24px;
-    text-align: center;
-}
-
-/* Common Button Styles */
-.btn-register {
-    background: var(--accent);
-    color: #fff !important;
-    border-radius: 30px;
-    padding: 10px 25px !important;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 2px solid var(--accent);
-    box-shadow: 0 4px 15px rgba(255,152,0,0.3);
-}
-
-.btn-register:hover {
-    background: transparent;
-    color: var(--accent) !important;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255,152,0,0.4);
-}
-
-.btn-logout {
-    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
-    border-radius: 25px;
-    padding: 10px 20px !important;
-    color: white !important;
-    transition: all 0.3s ease;
-    border: none !important;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
-}
-
-.btn-logout:hover {
-    background: linear-gradient(135deg, #c82333 0%, #bd2130 100%) !important;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
-    color: white !important;
-}
-
-/* Common Footer Styles (from home.css) */
-footer {
-    background: var(--dark);
-    color: #ddd;
-    padding: 80px 0 30px;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 50px;
-}
-
-.footer-brand h4 {
-    color: #fff;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-.footer-brand h4 span {
-    color: var(--accent);
-}
-
-.footer-brand p {
-    line-height: 1.6;
-    margin-bottom: 25px;
-}
-
-.footer-links h5 {
-    color: #fff;
-    font-weight: 600;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-.footer-links h5::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 40px;
-    height: 3px;
-    background: var(--accent);
-}
-
-.footer-links ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links li {
-    margin-bottom: 12px;
-}
-
-.footer-links a {
-    color: #ddd;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-.footer-links a:hover {
-    color: var(--accent);
-    transform: translateX(5px);
-}
-
-.social-icons {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-icons a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    color: #fff;
-    transition: all 0.3s ease;
-    font-size: 1.2rem;
-    text-decoration: none;
-}
-
-.social-icons a:hover {
-    background: var(--accent);
-    transform: translateY(-5px);
-}
-
-.copyright {
-    text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.9rem;
+    margin: 8px
 }
