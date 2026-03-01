@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Guides - FinTrack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/home.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/investment-guides.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html"><span>Fin</span>Track</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                        <div class="nav-popup">
+                            <a href="budget-planner.html"><i class="bi bi-wallet2"></i> Budget Planning</a>
+                            <a href="savings-tracker.html"><i class="bi bi-piggy-bank"></i> Savings Tracking</a>
+                            <a href="investment-tools.html"><i class="bi bi-bar-chart"></i> Investment Tools</a>
+                             <a href="pages/currency-converter.html"><i class="bi bi-arrow-left-right"></i> Currency Converter</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Resources</a>
+                        <div class="nav-popup">
+                            <a href="saving-tips.html"><i class="bi bi-currency-dollar"></i> Saving Tips</a>
+                            <a href="investment-guides.html"><i class="bi bi-graph-up-arrow"></i> Investment Guides</a>
+                            <a href="debt-management.html"><i class="bi bi-coin"></i> Debt Management</a>
+                            <a href="financial-literacy.html"><i class="bi bi-lightbulb"></i> Financial Literacy</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tools</a>
+                        <div class="nav-popup">
+                            <a href="loan-calculator.html"><i class="bi bi-calculator"></i> Loan Calculator</a>
+                            <a href="budget-calculator.html"><i class="bi bi-pie-chart"></i> Budget Calculator</a>
+                            <a href="retirement-planner.html"><i class="bi bi-calendar-event"></i> Retirement Planner</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blogs</a>
+                    </li>
+
+                    <!-- Dynamic Auth Links - Updated by auth.js -->
+                    <li class="nav-item" id="loginNavItem">
+                        <a class="nav-link" href="../login.html" id="loginLink">
+                            <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                        </a>
+                    </li>
+                    <li class="nav-item ms-2" id="registerNavItem">
+                        <a class="nav-link btn-register" href="../reg.html" id="registerLink">
+                            <i class="bi bi-person-plus me-1"></i>Register
+                        </a>
+                    </li>
+                    <li class="nav-item" id="dashboardNavItem" style="display: none;">
+                        <a class="nav-link" href="dashboard.html" id="dashboardLink">
+                            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item" id="profileNavItem" style="display: none;">
+                        <a class="nav-link" href="profile.html" id="profileLink">
+                            <i class="bi bi-person me-1"></i>Profile
+                        </a>
+                    </li>
+                    <li class="nav-item ms-2" id="logoutNavItem" style="display: none;">
+                        <a class="nav-link logout-btn" href="#" id="logoutLink">
+                            <i class="bi bi-box-arrow-right me-1"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-investment-guides">
+        <div class="container">
+            <h1>Investment Guides</h1>
+            <p class="lead">Learn how to grow your wealth through smart investing strategies tailored for every experience level</p>
+            <a href="#guides-section" class="btn btn-get-started">Start Learning</a>
+        </div>
+    </section>
+
+    <!-- Investor Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Find Your Investor Profile</h2>
+                <p>Select your experience level to get personalized guidance</p>
+            </div>
+            
+            <div class="profile-grid">
+                <div class="profile-card" data-level="beginner">
+                    <div class="profile-icon">
+                        <i class="bi bi-person"></i>
+                    </div>
+                    <h4>Beginner</h4>
+                    <p>New to investing? Start with the basics</p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-value">Low</div>
+                            <div class="stat-label">Risk Level</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Long</div>
+                            <div class="stat-label">Time Horizon</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-card" data-level="intermediate">
+                    <div class="profile-icon">
+                        <i class="bi bi-person-check"></i>
+                    </div>
+                    <h4>Intermediate</h4>
+                    <p>Some experience, ready to diversify</p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-value">Medium</div>
+                            <div class="stat-label">Risk Level</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Medium</div>
+                            <div class="stat-label">Time Horizon</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-card" data-level="advanced">
+                    <div class="profile-icon">
+                        <i class="bi bi-person-gear"></i>
+                    </div>
+                    <h4>Advanced</h4>
+                    <p>Experienced investor seeking complex strategies</p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-value">High</div>
+                            <div class="stat-label">Risk Level</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Short</div>
+                            <div class="stat-label">Time Horizon</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guides Section -->
+    <section class="guides-section" id="guides-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Investment Guides</h2>
+                <p>Comprehensive resources to help you make informed investment decisions</p>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Guides</button>
+                    <button class="filter-btn" data-filter="stocks">Stocks</button>
+                    <button class="filter-btn" data-filter="mutual-funds">Mutual Funds</button>
+                    <button class="filter-btn" data-filter="real-estate">Real Estate</button>
+                    <button class="filter-btn" data-filter="bonds">Bonds</button>
+                    <button class="filter-btn" data-filter="crypto">Crypto</button>
+                </div>
+            </div>
+            
+            <div class="guides-grid" id="guidesContainer">
+                <!-- Guides will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="calculator-card">
+                <div class="calculator-content">
+                    <h2>Investment Growth Calculator</h2>
+                    <p>See how your investments can grow over time with compound interest</p>
+                    
+                    <div class="calculator-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="initialInvestment">Initial Investment (₹)</label>
+                                <input type="number" id="initialInvestment" class="form-control" value="10000" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="monthlyContribution">Monthly Contribution (₹)</label>
+                                <input type="number" id="monthlyContribution" class="form-control" value="5000" min="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="annualReturn">Expected Annual Return (%)</label>
+                                <input type="number" id="annualReturn" class="form-control" value="12" min="1" max="50" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label for="investmentYears">Investment Period (Years)</label>
+                                <input type="number" id="investmentYears" class="form-control" value="10" min="1" max="50">
+                            </div>
+                        </div>
+                        <button id="calculateBtn" class="btn btn-primary">
+                            <i class="bi bi-calculator me-2"></i>Calculate Growth
+                        </button>
+                    </div>
+                    
+                    <div class="calculator-result" id="calculatorResult">
+                        <div class="result-grid">
+                            <div class="result-card">
+                                <div class="result-value">₹<span id="totalInvestment">0</span></div>
+                                <div class="result-label">Total Invested</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value">₹<span id="finalValue">0</span></div>
+                                <div class="result-label">Final Value</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value">₹<span id="interestEarned">0</span></div>
+                                <div class="result-label">Interest Earned</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path Section -->
+    <section class="learning-path-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Learning Journey</h2>
+                <p>Follow this step-by-step path to investment mastery</p>
+            </div>
+            
+            <div class="learning-path">
+                <div class="path-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Financial Foundation</h4>
+                        <p>Build emergency fund, clear high-interest debt, understand basic budgeting</p>
+                        <span class="step-duration">1-2 months</span>
+                    </div>
+                </div>
+                
+                <div class="path-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Investment Basics</h4>
+                        <p>Learn about different asset classes, risk management, and investment vehicles</p>
+                        <span class="step-duration">2-3 months</span>
+                    </div>
+                </div>
+                
+                <div class="path-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Portfolio Building</h4>
+                        <p>Create your first investment portfolio, asset allocation, diversification</p>
+                        <span class="step-duration">3-4 months</span>
+                    </div>
+                </div>
+                
+                <div class="path-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Advanced Strategies</h4>
+                        <p>Tax optimization, retirement planning, advanced investment techniques</p>
+                        <span class="step-duration">6+ months</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h4><span>Fin</span>Track</h4>
+                    <p>Empowering you to take control of your finances and build a secure financial future through smart
+                        budgeting and planning.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Budgeting</a></li>
+                        <li><a href="savings-tracker.html">Savings Tracking</a></li>
+                        <li><a href="saving-tips.html">Saving Tips</a></li>
+                        <li><a href="investment-guides.html">Investment Guides</a></li>
+                        <li><a href="#">Reports</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h5>Contact Us</h5>
+                    <ul>
+                        <li><i class="bi bi-geo-alt me-2"></i> RGUKT-Basar</li>
+                        <li><i class="bi bi-envelope me-2"></i> info@fintrack.com</li>
+                        <li><i class="bi bi-phone me-2"></i> +91 9182183086</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 FinTrack | Designed by Team CSE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/investment-guides.js"></script>
+</body>
+
+</html>

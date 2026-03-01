@@ -1,0 +1,47 @@
+/* loans.css - styles for Active Loans panel */
+.active-loans-panel {
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  max-height: 360px;
+  overflow-y: auto;
+}
+.loan-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.loan-item:last-child { border-bottom: none; }
+.loan-meta {
+  flex: 1;
+}
+.loan-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.loan-sub {
+  font-size: 0.9rem;
+  color: #666;
+}
+.loan-progress {
+  width: 160px;
+}
+.loan-actions {
+  display: flex;
+  gap: 6px;
+}
+.progress-small {
+  height: 10px;
+  border-radius: 8px;
+}
+.progress-text-small {
+  font-size: 0.8rem;
+  margin-left: 6px;
+}
+
+@media (max-width: 768px) {
+  .loan-progress { width: 110px; }
+}
